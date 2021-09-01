@@ -1,0 +1,11 @@
+:root{
+    --primary: #142850; 
+    --accent: #00909E;
+    --light: #DAE1E7;
+    --yellow: #AABA3A;
+    --brown: #444444;
+    --danger: #C93D3D;
+}
+.invisible{
+    display: none;
+}
