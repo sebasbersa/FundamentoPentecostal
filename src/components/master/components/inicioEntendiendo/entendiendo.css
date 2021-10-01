@@ -1,0 +1,48 @@
+.div_entendiendo{
+    padding: 0 60px;
+}
+#div_entendiendo_image{
+    position: relative;
+    background-color: white;
+    height: 260px;
+    width: 300px;
+}
+#div_entendiendo_image_after{
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 50px 150px 0 150px;
+    border-color: white transparent transparent transparent;
+}
+.entendiendoTexts {
+    padding-top: 30px;
+    padding-right: 20px;
+    width: 200px;
+    color: #27496D
+}
+.entendiendoTexts2 {
+    padding-top: 30px;
+    color: #ffffff;
+    width: 90%
+}
+.entendiendo_link {
+    color: #ffffff
+}
+.entendiendo_link:hover {
+    color: #00909E;
+    font-weight: 600;
+}
+/* RESPONSIVE */
+@media (max-width: 600px){
+    .div_entendiendo{
+        text-align: center;
+        justify-content: center;
+    }
+    #div_entendiendo_image{
+        height: 200px;
+        width: 200px;
+    }
+    #div_entendiendo_image_after{
+        border-width: 50px 100px 0 100px;
+    }
+}

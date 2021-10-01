@@ -13,8 +13,9 @@ import Articulos from './pages/Articulos';
 
 const estilos = makeStyles( theme => ({
     root: {
-        display: 'flex'
+        display: 'block'
     },
+    // toolbar: 0,
     toolbar: theme.mixins.toolbar,
     content:{
         flexGrow: 1,
@@ -30,28 +31,27 @@ function Master(){
         setAbrir(!abrir);
     }
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
     function handleResize(){
         setWindowWidth(window.innerWidth);
-        if(windowWidth > 240){
+        if(windowWidth >= 960){
             setAbrir(false);
         }
     }
     window.addEventListener('resize', handleResize);
 
+
     return (
         <Router>
             <div className={classes.root}>
                 <NavbarComponent menuButton={accionAbrir} />
-                <Hidden xsDown>
-                    <Cajon
-                        variant="temporary"
-                        open={abrir}
-                        onClose={accionAbrir}
-                        clickLink={accionAbrir}
-                    />
-                </Hidden>
-                <div className={classes.content}>
-                    <div className={classes.toolbar}></div>
+                <Cajon
+                    variant="temporary"
+                    open={abrir}
+                    onClose={accionAbrir}
+                    clickLink={accionAbrir}
+                />
+                <div className={classes.toolbar}></div>
                     <Switch>
                         <Route path="/" exact>
                             <Inicio/>
@@ -63,7 +63,6 @@ function Master(){
                             <Articulos/>
                         </Route>
                     </Switch>
-                </div>
             </div>
         </Router>
     )

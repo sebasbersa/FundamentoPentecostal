@@ -9,3 +9,10 @@
 .invisible{
     display: none;
 }
+
+.logo_navbar{
+    position: absolute;
+    top: 0;
+    left: 50vw;
+    z-index: 10;
+}

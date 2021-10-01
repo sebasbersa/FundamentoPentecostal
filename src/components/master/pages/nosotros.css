@@ -1,0 +1,34 @@
+.us-headline{
+    max-height: 50vh;
+    height: 50vh;
+    background-image: url('../../../resources/images/ovejas.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    background-position: center;
+}
+
+.us-headline__div{
+    background: #142850aa;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-top: 3px solid #ffffffaa;
+    padding: 10px 60px;
+    color: white;
+}
+.us-body{
+    padding: 2rem;
+    color: #000000ee;
+    text-align: justify;
+}
+.us-img__div{
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    border-radius: 9px;
+}
+.us-img__img{
+    width: 100%;
+}
