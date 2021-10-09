@@ -69,8 +69,10 @@ function NavbarComponent(props){
                     Fundamento pentecostal
                 </Typography>
                 <Hidden smDown>
-                    {routes.map((ruta) => (
-                        <LinkRouter to={ruta.path} content={<Button variant="text" color="inherit">{ruta.name}</Button>}/>
+                    {routes.map((ruta, index) => (
+                        ruta.nav ? 
+                        <LinkRouter key={index} to={ruta.path} content={<Button variant="text" color="inherit">{ruta.name}</Button>}/>
+                        : null
                     ))}
                 </Hidden>
             </Toolbar>

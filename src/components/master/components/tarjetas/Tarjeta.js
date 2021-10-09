@@ -18,13 +18,18 @@ const useStyles = makeStyles({
       height: 140,
       objectFit:"cover",
     },
+    link: {
+      '&:hover': {
+        color: "inherit",
+     },
+    }
   });
 
 function Tarjeta(props){
     const classes = useStyles();
     return (
-        <Card id={props.id} className={classes.root}>
-          <CardActionArea>
+        <Card id={props.id} className={classes.root} >
+          <CardActionArea className={classes.link} href={props.path} onClick={() => {console.log(props.path)}}>
             <CardMedia
               className={classes.media}
               image={props.imagen}

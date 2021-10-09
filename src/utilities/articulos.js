@@ -5,6 +5,7 @@ const articulos =  [
         imageTitle: "Pablo apostol",
         titulo: "El nuevo testamento",
         texto: "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
+        path: "/articulo/el-nuevo-testamento",
     },
     {
         id: 2,
@@ -12,6 +13,7 @@ const articulos =  [
         imageTitle: "La biblia es inspirada por Dios",
         titulo: "La biblia es inspirada",
         texto: "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
+        path: "/articulo/la-biblia-es-inspirada",
     },
     {
         id: 3,
@@ -19,6 +21,7 @@ const articulos =  [
         imageTitle: "La iglesia pentecostal",
         titulo: "La iglesia pentecostal",
         texto: "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
+        path: "/articulo/la-iglesia-pentecostal",
     },
     {
         id: 4,
@@ -26,6 +29,7 @@ const articulos =  [
         imageTitle: "El mundo donde vivimos",
         titulo: "El mundo donde vivimos",
         texto: "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
+        path: "/articulo/el-mundo-donde-vivimos",
     }
 ]
 

@@ -17,7 +17,9 @@ function Tarjetas(props) {
                             imagen={card.imagen} 
                             imageTitle={card.imageTitle}
                             titulo={card.titulo}
-                            texto={card.texto}/>
+                            texto={card.texto}
+                            path={card.path}
+                            />
                     </div>
                     )            
             })}

@@ -54,9 +54,10 @@ function Master(){
                 <div className={classes.toolbar}></div>
                     <Switch>
                         {
-                            routes.map((ruta) => (
+                            routes.map((ruta, index) => (
                                 (
                                     <Route 
+                                    key={index}
                                     path={ruta.path} 
                                     exact={ruta.exact} 
                                     render={(props) => <ruta.component/>}
