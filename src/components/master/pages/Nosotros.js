@@ -15,12 +15,13 @@ function Nosotros(){
                     </p>
                 </div>
             </div>
-            <div className="us-body row">
-                <h6>
+            <div className="body row">
+                <h1 className="body__title" align="center">NOSOTROS</h1>
+                <p>
                     Fundamento Pentecostal existe para ayudar al pueblo pentecostal mediante la difusión de recursos basados en la Palabra de Dios, contribuyendo en su identidad, teología e historia. Promovemos tanto, una correcta interpretación del mensaje Bíblico, como su acertada aplicación para la vida de la persona, de la iglesia y de la sociedad, generando un espacio de enseñanza y reflexión para la capacitación del pueblo de Dios. 
-                </h6>
+                </p>
                 <br/>
-                <div className="col-6">
+                <div className="col-md">
                     <br/>
                     <div align="center">
                     <h2>Misión.</h2>
@@ -40,7 +41,7 @@ function Nosotros(){
                         </li>
                     </ol>
                 </div>
-                <div className="col-6">
+                <div className="col-md">
                     <div className="us-img__div" align="center">
                         <img src={Study} className="us-img__img" />
                     </div>

@@ -5,6 +5,7 @@ import {makeStyles} from '@material-ui/core';
 import './inicio.css';
 import Tarjetas from '../components/tarjetas/Tarjetas';
 import Entendiendo from '../components/inicioEntendiendo/Entendiendo';
+import articulos from '../../../utilities/articulos';
 
 
 const estilos = makeStyles( (theme) => ({
@@ -28,39 +29,10 @@ const estilos = makeStyles( (theme) => ({
     }
 
 }))
-const images=[
-    {
-        id: '1',
-        title: 'Fundamento Pentecostal',
-        image: 'https://laopinion.com/wp-content/uploads/sites/3/2020/12/pexels-wendy-van-zyl-1112048.jpg?quality=80&strip=all&w=1200',
-        text: 'lorem ipsum 1 lorem ipsum 1 lorem ipsum 1 lorem ipsum 1 lorem ipsum 1 lorem ipsum 1 ',
-        buttonText: 'Saber más',
-        side: 'center',
-        light: 'light'
-    },
-    {
-        id: '2',
-        title: 'Las nuevas maravillas de Dios',
-        image: 'https://dg.imgix.net/the-most-repeated-verse-in-the-bible-wfq9puhm-en/landscape/the-most-repeated-verse-in-the-bible-wfq9puhm-2c238cf97d4c72a4be85c9d86448d20e.jpg?ts=1538421135&ixlib=rails-4.2.0&auto=format%2Ccompress&fit=min&w=700&h=394&dpr=2&ch=Width%2CDPR',
-        text: 'lorem ipsum 2 lorem ipsum 2 lorem ipsum 2 lorem ipsum 2 lorem ipsum 2 ',
-        buttonText: 'Saber más',
-        side: 'right'
-    },
-    {
-        id: '3',
-        title: 'HEADLINE 3',
-        image: 'https://cdn.pixabay.com/photo/2016/03/10/10/28/banner-1248181_960_720.jpg',
-        text: 'lorem ipsum 2 lorem ipsum 2 lorem ipsum 2 lorem ipsum 2 lorem ipsum 2 ',
-        buttonText: 'Saber más',
-        side: 'left',
-        light: 'light'
-    }
-]
+const __cards = articulos;
 
 function Inicio() {
     const classes = estilos();
-    
-    
     return (
         <div>
         <InicioHeadline />
@@ -75,7 +47,7 @@ function Inicio() {
             <div className={classes.cards}>
                 <h2 className="title c-primary">Recursos Destacados</h2>
                 <br/>
-                <Tarjetas cantidad={4}/>
+                <Tarjetas cantidad={4} cards={__cards}/>
             </div>
         </div>
     )

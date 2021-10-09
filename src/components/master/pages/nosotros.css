@@ -1,6 +1,6 @@
 .us-headline{
-    max-height: 50vh;
-    height: 50vh;
+    max-height: 60vh;
+    height: 60vh;
     background-image: url('../../../resources/images/ovejas.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -18,11 +18,7 @@
     padding: 10px 60px;
     color: white;
 }
-.us-body{
-    padding: 2rem;
-    color: #000000ee;
-    text-align: justify;
-}
+
 .us-img__div{
     margin: 20px;
     padding: 20px;
@@ -31,4 +27,8 @@
 }
 .us-img__img{
     width: 100%;
+}
+
+.us-body ol li{
+    margin-bottom: 10px;
 }

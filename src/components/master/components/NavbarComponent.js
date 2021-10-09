@@ -7,6 +7,7 @@ import LinkRouter from './LinkRouter';
 import logoSvg from '../../../resources/logo/logo_svg.svg';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from '@material-ui/core/Slide';
+import routes from '../routes';
 
 const useStyles = makeStyles(theme => ({
     menuButton: {
@@ -68,9 +69,9 @@ function NavbarComponent(props){
                     Fundamento pentecostal
                 </Typography>
                 <Hidden smDown>
-                    <LinkRouter to='/' content={<Button variant="text" color="inherit" >Inicio</Button>}/>
-                    <LinkRouter to='/nosotros' content={<Button variant="text" color="inherit" >nosotros</Button>}/>
-                    <LinkRouter to='/articulos' content={<Button variant="text" color="inherit" >Articulos</Button>}/>
+                    {routes.map((ruta) => (
+                        <LinkRouter to={ruta.path} content={<Button variant="text" color="inherit">{ruta.name}</Button>}/>
+                    ))}
                 </Hidden>
             </Toolbar>
             <Hidden smDown>

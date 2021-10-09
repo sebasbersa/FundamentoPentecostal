@@ -7,9 +7,8 @@ import {
     Switch,
     Route
   } from "react-router-dom";
-import Inicio from './pages/Inicio';
-import Nosotros from './pages/Nosotros';
-import Articulos from './pages/Articulos';
+import './master.css';
+import routes from './routes';
 
 const estilos = makeStyles( theme => ({
     root: {
@@ -25,6 +24,7 @@ const estilos = makeStyles( theme => ({
 }))
 
 function Master(){
+    const year = new Date();
     const classes = estilos();
     const [abrir, setAbrir] = useState(false);
     const accionAbrir = ()=>{
@@ -53,16 +53,22 @@ function Master(){
                 />
                 <div className={classes.toolbar}></div>
                     <Switch>
-                        <Route path="/" exact>
-                            <Inicio/>
-                        </Route>
-                        <Route path="/nosotros" exact>
-                            <Nosotros/>
-                        </Route>
-                        <Route path="/articulos" exact>
-                            <Articulos/>
-                        </Route>
+                        {
+                            routes.map((ruta) => (
+                                (
+                                    <Route 
+                                    path={ruta.path} 
+                                    exact={ruta.exact} 
+                                    render={(props) => <ruta.component/>}
+                                    />
+                                )
+                            ))
+                        }
                     </Switch>
+                    <footer>
+                        este es el footer
+                    </footer>
+                    <div className="pie">Copyright {year.getFullYear()}</div>
             </div>
         </Router>
     )
