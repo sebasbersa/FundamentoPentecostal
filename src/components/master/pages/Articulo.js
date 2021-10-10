@@ -21,7 +21,8 @@ function Articulo(props) {
                             exact={true} 
                             render={() => <ArticuloComponent 
                                             titulo={art.titulo} 
-                                            texto={art.texto} />}/>
+                                            texto={art.texto}
+                                            contenido={art.contenido} />}/>
                         )
                     })}
                     <Route path="*" render={() => <Error404/>}/>

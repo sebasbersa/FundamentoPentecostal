@@ -6,6 +6,32 @@ const articulos =  [
         titulo: "El nuevo testamento",
         texto: "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
         path: "/articulo/el-nuevo-testamento",
+        contenido: [
+            {
+                type: "parrafo",
+                contenido: "Este es un parrafo Este es un parrafo Este es un parrafo Este es un parrafo Este es un parrafo Este es un parrafo Este es un parrafo Este es un parrafo Este es un parrafo ",
+            },
+            {
+                type: "subtitulo",
+                contenido: "Este es un subtitulo",
+            },
+            {
+                type: "lista ordenada",
+                contenido: [
+                    "parte 1",
+                    "parte 2",
+                    "parte 3"
+                ],
+            },
+            {
+                type: "lista desordenada",
+                contenido: [
+                    "parte 1",
+                    "parte 2",
+                    "parte 3"
+                ],
+            },
+        ],
     },
     {
         id: 2,
@@ -14,6 +40,7 @@ const articulos =  [
         titulo: "La biblia es inspirada",
         texto: "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
         path: "/articulo/la-biblia-es-inspirada",
+        contenido: [],
     },
     {
         id: 3,
@@ -22,6 +49,7 @@ const articulos =  [
         titulo: "La iglesia pentecostal",
         texto: "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
         path: "/articulo/la-iglesia-pentecostal",
+        contenido: [],
     },
     {
         id: 4,
@@ -30,6 +58,7 @@ const articulos =  [
         titulo: "El mundo donde vivimos",
         texto: "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
         path: "/articulo/el-mundo-donde-vivimos",
+        contenido: [],
     }
 ]
 
