@@ -1,7 +1,7 @@
 import React from 'react'
 import articulos from '../../../utilities/articulos';
 import Error404 from './Error404';
-import ArticuloComponent from '../components/ArticuloComponent';
+import ArticuloComponent from '../components/articulos/ArticuloComponent';
 import {
     BrowserRouter as Router,
     Switch,
@@ -20,6 +20,7 @@ function Articulo(props) {
                             path={art.path}
                             exact={true} 
                             render={() => <ArticuloComponent 
+                                            img={art.imagen}
                                             titulo={art.titulo} 
                                             texto={art.texto}
                                             contenido={art.contenido} />}/>

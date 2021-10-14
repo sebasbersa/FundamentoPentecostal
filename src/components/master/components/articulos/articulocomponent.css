@@ -1,0 +1,27 @@
+.artcomp_body{
+    padding: 30px;
+    display: table;
+}
+
+.artcomp_content{
+    display: table-cell;
+    width: 75vw;
+    padding: 20px;
+}
+.artcomp_content h1{
+    text-align: center;
+}
+
+.artcomp_img{
+    max-width: 350px;
+    border-radius: 8px;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.6);
+}
+.artcomp_sidebar{
+    display: table-cell;
+    position: fixed;
+    height: 70vh;
+    width: 20vw;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.6);
+    border-radius: 8px;
+}

@@ -1,13 +1,23 @@
 import React from 'react'
+import './articulocomponent.css';
+import ArticuloSidebar from './ArticulosSidebar';
 
 function ArticuloComponent(props){
     return (
-        <div>
-            <h1>{props.titulo}</h1>
-            {props.contenido.map((objeto, index) =>{
-                return(<Evaluar key={index} contenido={objeto} />)
-                
-            })}
+        <div className="artcomp_body">
+            <div className="artcomp_content">
+                <div align="center">
+                        <img className="artcomp_img" src={props.img}  />
+                </div>
+                <hr/>
+                    <h1>{props.titulo}</h1>
+                    {props.contenido.map((objeto, index) =>{
+                        return(<Evaluar key={index} contenido={objeto} />)
+                    })}
+            </div>
+            <div className="artcomp_sidebar" >
+                <ArticuloSidebar />
+            </div>
         </div>
     )
 }
