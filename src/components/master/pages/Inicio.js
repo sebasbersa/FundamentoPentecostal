@@ -5,7 +5,7 @@ import {makeStyles} from '@material-ui/core';
 import './inicio.css';
 import Tarjetas from '../components/tarjetas/Tarjetas';
 import Entendiendo from '../components/inicioEntendiendo/Entendiendo';
-import articulos from '../../../utilities/articulos';
+// import articulos from '../../../utilities/articulos';
 
 
 const estilos = makeStyles( (theme) => ({
@@ -29,10 +29,14 @@ const estilos = makeStyles( (theme) => ({
     }
 
 }))
-const __cards = articulos;
+
+// const __cards = articulos();
 
 function Inicio() {
     const classes = estilos();
+
+    const cards = []
+
     return (
         <div>
         <InicioHeadline />
@@ -47,7 +51,7 @@ function Inicio() {
             <div className={classes.cards}>
                 <h2 className="title c-primary">Recursos Destacados</h2>
                 <br/>
-                <Tarjetas cantidad={4} cards={__cards}/>
+                <Tarjetas cantidad={4} cards={cards} destacada={true} />
             </div>
         </div>
     )

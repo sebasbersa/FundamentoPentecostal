@@ -1,26 +1,30 @@
 import React from 'react';
 import {Drawer,makeStyles } from '@material-ui/core';
 import UserSidebar from './listas/UserSidebar';
-import Logo from '../../../resources/logo_blue.svg';
+import Logo from '../../../../../resources/logo_blue.svg';
 
-const estilos = makeStyles(theme =>({
-    drawer: {
-        width: 240,
-        flexShrink: 0
-    },
-    drawerPaper: {
-        width: 240
-    },
-    Logo: {
-        maxWidth: '60px'
-    },
-    toolbar: theme.mixins.toolbar
-}));
 
-function Cajon(props){
+function Sidebar(props){
+    const estilos = makeStyles(theme =>({
+        drawer: {
+            width: props.width,
+            flexShrink: 0,
+        },
+        drawerPaper: {
+            width: props.width
+        },
+        Logo: {
+            maxWidth: '60px'
+        },
+        toolbar: theme.mixins.toolbar,
+        marginTop: {
+            marginTop: "30px"
+        }
+    }));
     const classes = estilos();
     return(
         <Drawer 
+            id={props.id}
             className={classes.drawer} 
             classes={{paper: classes.drawerPaper}}
             anchor="left"
@@ -28,8 +32,7 @@ function Cajon(props){
             open={props.open}
             onClose={props.onClose ? props.onClose : null}
             >
-            <div className={classes.toolbar}></div>
-            <div align="center">
+            <div className={classes.marginTop} align="center">
             <img src={Logo} alt="" className={classes.Logo}/>
             </div>
             <UserSidebar clickLink={props.clickLink}/>
@@ -37,4 +40,4 @@ function Cajon(props){
     )
 }
 
-export default Cajon;
+export default Sidebar;

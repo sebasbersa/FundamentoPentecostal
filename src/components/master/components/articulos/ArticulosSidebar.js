@@ -1,14 +1,22 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import './articulosidebar.css'
-import articulos from '../../../../utilities/articulos';
 
 function ArticulosSidebar(){
-    const _articulos = articulos.slice(0, 4);
+    const [posts, setposts] = useState([]);
+    useEffect(() => {
+        consumeApiPosts();
+    }, [])
+    const consumeApiPosts = async() => {
+        const response = await fetch("http://localhost:3500/posts", {method: "POST"})
+        const responseJson = await response.json();
+        console.log(responseJson);
+        setposts(responseJson)
+    };
     return (
         <div className="artsid_div">
             <h3 className="artsid_h3">Otros articulos</h3>
             <hr />
-            {articulos.map((art) => {
+            {posts.map((art) => {
                 return(
                     <a href={art.path}>
                         <p>{art.titulo}</p>

@@ -1,0 +1,30 @@
+h1, h2, h3, h4, h5, h6{
+    font-family: corbel;
+    font-weight: 600;
+}
+p, li, a{
+    font-family: corbel;
+    font-weight: 400;
+    font-size: 18px;
+}
+button, span{
+    font-family: corbel;
+    font-weight: 400;
+}
+.body{
+    padding: 2rem 4rem;
+    color: #000000ee;
+    text-align: justify;
+}
+.body__title{
+    margin-bottom: 30px;
+}
+footer{
+    min-height: 100px;
+    background: black;
+}
+.pie{
+    text-align: center;
+    color: #ffffff88;
+    background: #0e0e0e;
+}

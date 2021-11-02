@@ -43,7 +43,7 @@ function Nosotros(){
                 </div>
                 <div className="col-md">
                     <div className="us-img__div" align="center">
-                        <img src={Study} className="us-img__img" />
+                        <img alt="nosotros" src={Study} className="us-img__img" />
                     </div>
                 </div>
             </div>

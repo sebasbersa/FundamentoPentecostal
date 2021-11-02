@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../../styles/navbar.css'
-import { AppBar, Toolbar, Typography, makeStyles, IconButton, Button, Hidden } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, makeStyles, IconButton, Button, Hidden, Link } from '@material-ui/core';
 import Menu from '@material-ui/icons/Menu';
 import logo from "../../../resources/logo.svg";
 import LinkRouter from './LinkRouter';
@@ -17,7 +17,17 @@ const useStyles = makeStyles(theme => ({
         }
     },
     title:{
-        flexGrow: 1
+        flexGrow: 1,
+
+    },
+    titleText:{
+        color: "#ffffff",
+        fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+        "&:hover":{
+            color: "#fff",
+            opacity: "0.9",
+            textDecoration: "none",
+        },
     },
     appBar: {
         zIndex: 1,
@@ -66,7 +76,10 @@ function NavbarComponent(props){
                     <Menu />
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
+                    <Link href="/" className={classes.titleText}>
                     Fundamento pentecostal
+                    </Link>
+                    
                 </Typography>
                 <Hidden smDown>
                     {routes.map((ruta, index) => (

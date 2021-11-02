@@ -17,20 +17,20 @@ function Fundamento() {
             </div>
             <div className="body row">
                 <h1 className="body__title" align="center">FUNDAMENTO PENTECOSTAL</h1>
-                <p>Muchos evangélicos pentecostales, desconocen tanto la historia del movimiento como sus bases doctrinales. En Fundamento Pentecostal encontrará recursos que le ayudarán y proveerán para que descubra las principales características del pentecostalismo. </p>
+                <p>Muchos evangélicos pentecostales, desconocen tanto la historia del movimiento como sus bases doctrinales. En Fundamento Pentecostal encontrará recursos que le ayudarán y proveerán de información correspondiente a las principales características del pentecostalismo.</p>
                 <div className="col-md" align="center">
-                <a href="#">
+                <a href="/">
                     <h3 className="fundamentos-link">Historia</h3>
                     <div className="fundamento-images">
-                        <img src={Historia} className="fundamento-images__image" />
+                        <img alt="historia" src={Historia} className="fundamento-images__image" />
                     </div>
                 </a>
                 </div>
                 <div className="col-md" align="center">
-                    <a href="#">
+                    <a href="/">
                         <h3 className="fundamentos-link">Teología</h3>
                         <div className="fundamento-images">
-                            <img src={Teologia} className="fundamento-images__image" />
+                            <img alt="teologia" src={Teologia} className="fundamento-images__image" />
                         </div>
                     </a>
                 </div>

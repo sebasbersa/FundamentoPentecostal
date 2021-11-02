@@ -1,13 +1,9 @@
 import React from 'react';
 import './inicioheadline.css';
 import VideoBackground from "../../../../resources/videos/video_bible.mp4";
-import {Button,makeStyles} from '@material-ui/core';
+import {Button} from '@material-ui/core';
 
-const estilos = makeStyles( (theme) => ({
-    root: {
-        display: 'block'
-    }
-}))
+
 
 function InicioHeadline(){
     return(

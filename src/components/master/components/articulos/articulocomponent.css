@@ -25,3 +25,9 @@
     box-shadow: 3px 3px 8px rgba(0,0,0,0.6);
     border-radius: 8px;
 }
+.artcomp_content_img{
+    max-height: 300px;
+    max-width: 75vw;
+    border-radius: 10px;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.6);
+}

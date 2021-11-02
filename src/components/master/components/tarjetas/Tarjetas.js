@@ -1,15 +1,30 @@
-import { CardMedia } from '@material-ui/core'
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Tarjeta from './Tarjeta'
 import "./tarjetas.css"
 
 function Tarjetas(props) {
-    const cards = props.cards;
-    
-    const tarjetas = cards.slice(0,props.cantidad)
+    const [posts, setposts] = useState([]);
+    useEffect(() => {
+        consumeApiPosts();
+    }, [])
+    const consumeApiPosts = async() => {
+        const response = await fetch("http://localhost:3500/posts", {method: "POST"})
+        const responseJson = await response.json();
+        console.log(responseJson);
+        setposts(responseJson)
+    };
+    const cards = posts.slice(0,props.cantidad);
+    const destacadas = cards.filter(function(card){
+        if (props.destacada){
+            return card.destacada
+        }else{
+            return card
+        }
+    });
+
     return (
         <div className="row" align="center">
-            {tarjetas.map((card, index) => {
+            {destacadas.map((card, index) => {
                 return (
                     <div key={index} className="col-md-3">
                         <Tarjeta 
@@ -17,12 +32,16 @@ function Tarjetas(props) {
                             imagen={card.imagen} 
                             imageTitle={card.imageTitle}
                             titulo={card.titulo}
-                            texto={card.texto}
+                            descripcion={card.descripcion}
                             path={card.path}
                             />
                     </div>
-                    )            
-            })}
+                    )
+            })
+            
+            
+            
+            }
         </div>
     )
 }

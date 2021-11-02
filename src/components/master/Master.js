@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Hidden, makeStyles} from '@material-ui/core';
+import { makeStyles} from '@material-ui/core';
 import NavbarComponent from './components/NavbarComponent';
 import Cajon from './components/Cajon';
 import {
@@ -30,17 +30,13 @@ function Master(){
     const accionAbrir = ()=>{
         setAbrir(!abrir);
     }
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
     function handleResize(){
-        setWindowWidth(window.innerWidth);
-        if(windowWidth >= 960){
+        if(window.innerWidth >= 960){
             setAbrir(false);
         }
     }
+
     window.addEventListener('resize', handleResize);
-
-
     return (
         <Router>
             <div className={classes.root}>

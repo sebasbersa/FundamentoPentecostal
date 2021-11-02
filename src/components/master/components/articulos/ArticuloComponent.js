@@ -7,7 +7,7 @@ function ArticuloComponent(props){
         <div className="artcomp_body">
             <div className="artcomp_content">
                 <div align="center">
-                        <img className="artcomp_img" src={props.img}  />
+                        <img alt={props.titulo} className="artcomp_img" src={props.img}  />
                 </div>
                 <hr/>
                     <h1>{props.titulo}</h1>
@@ -47,6 +47,14 @@ function Evaluar(props){
                     return <li key={index}>{part}</li>
                 })}
             </ul>
+        )
+    }
+    else if(contenido.type === "img"){
+        return (
+            <div align="center">
+                <img alt="imagen" src={contenido.contenido} className="artcomp_content_img" />
+            </div>
+            
         )
     }
     else{

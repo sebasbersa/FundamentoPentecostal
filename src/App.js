@@ -8,6 +8,7 @@ import {
     Switch,
     Route
   } from "react-router-dom";
+import Admin from './components/admin/Admin';
 
 
 function App(){
@@ -15,7 +16,7 @@ function App(){
         <ThemeProvider theme={theme}>
             <Router>
                 <Switch>
-                    <Route path="/admin" exact={false}>HELLO WORLD</Route>
+                    <Route path="/admin" exact={false}><Admin/></Route>
                     <Route path="/" exact={false}><Master/></Route>
                 </Switch>
             </Router>
