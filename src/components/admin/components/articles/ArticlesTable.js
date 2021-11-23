@@ -1,14 +1,18 @@
 import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import {ListItemAvatar, Avatar, Button, ListItemText, Checkbox, Tooltip } 
+import {ListItemAvatar, Avatar, Button, 
+  ListItemText, Checkbox, Tooltip} 
     from '@material-ui/core';
-import {Table, TableHead, TableBody, TableCell, TableContainer,TableRow, TableFooter, TablePagination} from '@material-ui/core'
+import {Table, TableHead, TableBody, TableCell, 
+  TableContainer,TableRow, TableFooter, TablePagination} from '@material-ui/core'
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
+import Favorite from '@material-ui/icons/Favorite';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
 const useStyles1 = makeStyles((theme) => ({
     root: {
@@ -90,6 +94,7 @@ function ArticlesTable(props) {
                 <TableRow>
                     <TableCell scope="col">#</TableCell>
                     <TableCell scope="col">Articulo</TableCell>
+                    <TableCell scope="col">Destacado</TableCell>
                     <TableCell scope="col">Habilitado</TableCell>
                     <TableCell scope="col">Eliminar</TableCell>
                 </TableRow>
@@ -114,12 +119,24 @@ function ArticlesTable(props) {
                         </Button>
                     </TableCell>
                     <TableCell>
+                      <Tooltip title="Destacar en inicio">
+                            <Checkbox 
+                              icon={<FavoriteBorder />} 
+                              checkedIcon={<Favorite />} 
+                              checked={article.destacada} 
+                              onChange={props.destacar} 
+                              name={article._id}
+                            />
+                        </Tooltip>
+                    </TableCell>
+                    <TableCell>
                       <Tooltip title={article.habilitado ? "Deshabilitar" : "Habilitar"}>
-                            <Checkbox  checked={article.habilitado} 
-                                      color="primary" 
-                                      onChange={props.habilitar} 
-                                      name={article._id}
-                                      />
+                            <Checkbox 
+                                checked={article.habilitado} 
+                                color="primary" 
+                                onChange={props.habilitar} 
+                                name={article._id}
+                                />
                         </Tooltip>
                     </TableCell>
                     <TableCell>

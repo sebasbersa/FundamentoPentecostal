@@ -4,20 +4,21 @@ function ArticlesList() {
     const [posts, setposts] = useState([]);
     useEffect(() => {
         consumeApiPosts();
-    }, [])
+    }, []);
     const consumeApiPosts = async() => {
-        const response = await fetch("http://localhost:3500/posts-all", {method: "POST"})
-        const responseJson = await response.json();
-        setposts(responseJson)
+        await fetch("http://localhost:3500/posts-all", {method: "POST"}).then(async ( res, err) => {
+                setposts(await res.json());
+        }).catch(()=>{
+            console.log("not conected");
+        });
     };
-
     const habilitarHandler = (event) => {
-        event.preventDefault();
+        //event.preventDefault();
         const id = event.target.name;
         const habilitado = event.target.checked;
         const cuerpo = {
             id: id,
-            habilitado:habilitado
+            habilitado: habilitado
         }
         enableDisablePost(cuerpo);
     }
@@ -31,27 +32,47 @@ function ArticlesList() {
         deletePost(cuerpo);
     }
 
+    const DestacarHandler = (event) => {
+        //event.preventDefault();
+        const id = event.target.name;
+        const destacado = event.target.checked;
+        const cuerpo = {
+            id: id,
+            destacado: destacado
+        };
+        destacarPost(cuerpo);
+    }
     const enableDisablePost = async(cuerpo) => {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(cuerpo)
         };
-        const response = await fetch("http://localhost:3500/enableDisablePost", requestOptions);
+        await fetch("http://localhost:3500/enableDisablePost", requestOptions);
         consumeApiPosts();
+        
     };
-
+    const destacarPost = async(cuerpo) =>{
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(cuerpo)
+        };
+        await fetch("http://localhost:3500/destacarPost", requestOptions);
+        consumeApiPosts();
+        
+    }
     const deletePost = async(cuerpo) => {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(cuerpo)
         };
-        const response = await fetch("http://localhost:3500/deletePost", requestOptions);
+        await fetch("http://localhost:3500/deletePost", requestOptions);
         consumeApiPosts();
     }
     return (
-        <ArticlesTable rows={posts} habilitar={habilitarHandler} eliminar={eliminarHandler} />
+        <ArticlesTable rows={posts} habilitar={habilitarHandler} destacar={DestacarHandler} eliminar={eliminarHandler} />
     )
 }
 

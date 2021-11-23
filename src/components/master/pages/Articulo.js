@@ -13,10 +13,11 @@ function Articulo(props) {
         consumeApiPosts();
     }, [])
     const consumeApiPosts = async() => {
-        const response = await fetch("http://localhost:3500/posts", {method: "POST"})
-        const responseJson = await response.json();
-        console.log(responseJson);
-        setposts(responseJson)
+        await fetch("http://localhost:3500/posts", {method: "POST"}).then(async ( res, err) => {
+                setposts(await res.json());
+        }).catch(()=>{
+            console.log("not conected");
+        });
     };
     return (
         <div>

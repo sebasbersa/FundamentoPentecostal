@@ -6,13 +6,21 @@ function Tarjetas(props) {
     const [posts, setposts] = useState([]);
     useEffect(() => {
         consumeApiPosts();
-    }, [])
+    }, []);
+
     const consumeApiPosts = async() => {
-        const response = await fetch("http://localhost:3500/posts", {method: "POST"})
-        const responseJson = await response.json();
-        console.log(responseJson);
-        setposts(responseJson)
+        await fetch("http://localhost:3500/posts", {method: "POST"}).then(async ( res, err) => {
+                setposts(await res.json());
+        }).catch(()=>{
+            console.log("not conected");
+        });
     };
+    // const consumeApiPosts = async() => {
+    //     const response = await fetch("http://localhost:3500/posts", {method: "POST"})
+    //     const responseJson = await response.json();
+    //     console.log(responseJson);
+    //     setposts(responseJson)
+    // };
     const cards = posts.slice(0,props.cantidad);
     const destacadas = cards.filter(function(card){
         if (props.destacada){

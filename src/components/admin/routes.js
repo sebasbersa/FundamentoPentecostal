@@ -1,9 +1,8 @@
 // Paginas
 import Inicio from './pages/Inicio';
 import Articulos from './pages/Articulos';
-// import Nosotros from './pages/Nosotros';
-import Articulo from './pages/Articulo';
-// import Fundamento from './pages/Fundamento';
+//import Articulo from './pages/Articulo';
+import CrearArticulo from './pages/CrearArticulo';
 
 // ERROR 404
 import Error404 from './pages/Error404';
@@ -33,9 +32,9 @@ const routes = [
         nav: true
     },
     {
-        name: "Articulo",
-        path: "/admin/articulo",
-        component: Articulo,
+        name: "Nuevo Articulo",
+        path: "/admin/nuevo-articulo",
+        component: CrearArticulo,
         exact: true,
         icon: BookIcon,
         nav: true

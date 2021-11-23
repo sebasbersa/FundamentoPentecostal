@@ -33,12 +33,22 @@ const useStyles = makeStyles(theme => ({
         zIndex: 1,
         height: "65px"
     },
+    logo2: {
+        maxWidth: 45,
+        verticalAlign: "top",
+        marginRight: "10px",
+        // marginBottom: "10px"
+      },
+    titleicon: {
+        display: "inline"
+    },
     logo: {
         position: "absolute",
         top: "10px",
         left: "calc(50% - 25px)",
         maxWidth: 45
       },
+    
     logoSvg: {
         position: "absolute",
         top: "0px",
@@ -75,9 +85,15 @@ function NavbarComponent(props){
                 onClick={props.menuButton}>
                     <Menu />
                 </IconButton>
-                <Typography variant="h6" className={classes.title}>
+                <Typography variant="h6" className={classes.title}>  
+                <div className={classes.titleicon}>
+                    <Link href="/" >
+                            <img src={logo} alt="Logo fundamento pentecostal" className={classes.logo2} />
+                    </Link>
+                </div>
+                   
                     <Link href="/" className={classes.titleText}>
-                    Fundamento pentecostal
+                        Fundamento pentecostal
                     </Link>
                     
                 </Typography>
@@ -89,10 +105,6 @@ function NavbarComponent(props){
                     ))}
                 </Hidden>
             </Toolbar>
-            <Hidden smDown>
-            <img src={logoSvg} alt="" className={classes.logoSvg}/>
-            <img src={logo} alt="Logo fundamento pentecostal" className={classes.logo} />
-            </Hidden>
         </AppBar>
         </HideOnScroll>
 
