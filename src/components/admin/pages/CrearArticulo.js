@@ -7,7 +7,10 @@ import DialogoCreate from '../components/articles/createArticle/DialogoCreate';
 import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import foto from '../../../resources/images/emptyimage.jpg';
 
+const basePath = "https://fundamentoserver.herokuapp.com";
+//const basePath = "http://localhost:3500";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,7 +36,9 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
+
 const CrearArticulo = () =>{
+
     const classes = useStyles();
     const [contenido, setContenido] = useState([
         {type: "subtitulo", contenido: "El nuevo testamento"},
@@ -66,25 +71,37 @@ const CrearArticulo = () =>{
     const handleChangeTitle = (event) => {
         setArticulo({...articulo, titulo: event.target.value});
     }
+    //CATEGORIA
     const [category, setCategory] = useState(1);
     const handleChangeCategory = (event) => {
-        setCategory(event.target.value);
-        setArticulo({...articulo, categoria: categorias[event.target.value].categoria})
+        const IdCategoria = event.target.value;
+        setCategory(IdCategoria);
+        if(IdCategoria >= 1){
+            setArticulo({...articulo, categoria: categorias[IdCategoria - 1].categoria})
+        }else{
+            setArticulo({...articulo, categoria: ""})
+        }
     }
-
+    //AUTOR
+    const [autor, setAutor] = useState("");
+    const handleChangeAutor = (event) => {
+        setAutor(event.target.value)
+        setArticulo({...articulo, autor: event.target.value})
+    }
     //IMAGE
     const [image, setImage] = useState('');
-    const [loading, setLoading] = useState(false);
 
     const handleUploadImage = e => {
         const files = e.target.files;
         //console.log(files[0].name)
         const data = new FormData();
         data.append('image', files[0]);
-        axios.post('http://localhost:3500/upload', data)
+        axios.post(basePath + '/upload' , data)
             .then(res => {
                 const path = res.data.path;
+                console.log(path);
                 setArticulo({...articulo, imagen: path});
+                setImage(basePath + path);
             })
             .catch(err => {console.log(err)});
     }
@@ -108,6 +125,23 @@ const CrearArticulo = () =>{
         setEditingObject(objeto);
         setOpenDialog(true);
     };
+    //metodo que sube el contenido de indice
+    const handleClickUp = (index) => {
+        const newContenido = [];
+        for (let i = 0; i<contenido.length; i++){
+            if(i === index - 1){
+                newContenido.push(contenido[index]);
+            }
+            else if(i === index){
+                newContenido.push(contenido[index-1]);
+            }
+            else{
+                newContenido.push(contenido[i]);
+            }   
+        }
+        setContenido(newContenido);
+
+    }
     // DIALOG ----------
     const addNewContent = (newContent)=>{
         setContenido((prev) =>{
@@ -128,8 +162,7 @@ const CrearArticulo = () =>{
                 return index !== id
             });
         });
-    }    
-
+    }
     const categorias = [
         {value: 1, categoria: "Teología"},
         {value: 2, categoria: "Historia"},
@@ -152,6 +185,8 @@ const CrearArticulo = () =>{
                 <TextField
                     id="standard-multiline-static"
                     label="Autor"
+                    value={autor}
+                    onChange={handleChangeAutor}
                     />
                 <FormControl className={classes.formControl}>
                 <InputLabel id="select-category">Categoría</InputLabel>
@@ -160,7 +195,7 @@ const CrearArticulo = () =>{
                     value={category}
                     onChange={handleChangeCategory}
                     >
-                    <MenuItem value="">
+                    <MenuItem value={0}>
                         <em>None</em>
                     </MenuItem>
                     {categorias.map((objeto, index)=>{
@@ -170,6 +205,7 @@ const CrearArticulo = () =>{
                 </Select>
                 </FormControl>
                 <h4>Subir una imagen</h4>
+                <img src={image ? image : foto} height="60" width="60" />
                 <input type='file'
                     name='imagen'
                     placeholder='Subir una imagen...'
@@ -192,6 +228,7 @@ const CrearArticulo = () =>{
                     classes={classes} 
                     contenido={objeto}
                     handleDelete={handleDelete}
+                    handleClickUp={handleClickUp}
                     />
                    )
             })}

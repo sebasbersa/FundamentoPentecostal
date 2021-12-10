@@ -6,14 +6,15 @@ import {
     Switch,
     Route
   } from "react-router-dom";
+import basePath from '../../../config/serverConfig';
 
 function Articulo(props) {
     const [posts, setposts] = useState([]);
     useEffect(() => {
         consumeApiPosts();
-    }, [])
+    }, []);
     const consumeApiPosts = async() => {
-        await fetch("http://localhost:3500/posts", {method: "POST"}).then(async ( res, err) => {
+        await fetch(basePath + "/posts", {method: "POST"}).then(async ( res, err) => {
                 setposts(await res.json());
         }).catch(()=>{
             console.log("not conected");

@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import ArticlesTable from "./ArticlesTable";
+import basePath from '../../../../config/serverConfig'
+
+
 function ArticlesList() {
     const [posts, setposts] = useState([]);
     useEffect(() => {
         consumeApiPosts();
     }, []);
     const consumeApiPosts = async() => {
-        await fetch("http://localhost:3500/posts-all", {method: "POST"}).then(async ( res, err) => {
+        await fetch(basePath + "/posts", {method: "POST"}).then(async ( res, err) => {
                 setposts(await res.json());
         }).catch(()=>{
             console.log("not conected");
@@ -48,7 +51,7 @@ function ArticlesList() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(cuerpo)
         };
-        await fetch("http://localhost:3500/enableDisablePost", requestOptions);
+        await fetch(basePath + "/enableDisablePost", requestOptions);
         consumeApiPosts();
         
     };
@@ -58,7 +61,7 @@ function ArticlesList() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(cuerpo)
         };
-        await fetch("http://localhost:3500/destacarPost", requestOptions);
+        await fetch(basePath + "/destacarPost", requestOptions);
         consumeApiPosts();
         
     }
@@ -68,7 +71,7 @@ function ArticlesList() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(cuerpo)
         };
-        await fetch("http://localhost:3500/deletePost", requestOptions);
+        await fetch(basePath + "/deletePost", requestOptions);
         consumeApiPosts();
     }
     return (

@@ -6,6 +6,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 
 const Contenido = (props) => {
     const id = props.id;
@@ -29,7 +30,9 @@ const Contenido = (props) => {
     const onEditing = () =>{
       props.onEdit(id, objeto);
     }
-
+    const handleClickUp = () =>{
+      props.handleClickUp(id);
+    }
     return (
         <div className={classes.container}>
         <Evaluar contenido={objeto}/>
@@ -38,6 +41,9 @@ const Contenido = (props) => {
         </IconButton>  
         <IconButton aria-label="delete" onClick={handleClickOpen}>
             <DeleteIcon color="secondary" />
+        </IconButton>  
+        <IconButton aria-label="subir" onClick={handleClickUp}>
+            <ArrowDropUpIcon color="primary" />
         </IconButton>  
         <Dialogo open={open} 
         handleClose={handleClose} 

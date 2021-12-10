@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import './articulosidebar.css'
+import basePath from '../../../../config/serverConfig';
 
 function ArticulosSidebar(){
     const [posts, setposts] = useState([]);
@@ -7,7 +8,7 @@ function ArticulosSidebar(){
         consumeApiPosts();
     }, [])
     const consumeApiPosts = async() => {
-        const response = await fetch("http://localhost:3500/posts", {method: "POST"})
+        const response = await fetch(basePath + "/posts", {method: "POST"})
         const responseJson = await response.json();
         console.log(responseJson);
         setposts(responseJson)
