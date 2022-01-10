@@ -41,10 +41,11 @@ const Contenido = (props) => {
         </IconButton>  
         <IconButton aria-label="delete" onClick={handleClickOpen}>
             <DeleteIcon color="secondary" />
-        </IconButton>  
-        <IconButton aria-label="subir" onClick={handleClickUp}>
+        </IconButton>
+        {id > 0 ? <IconButton aria-label="subir" onClick={handleClickUp}>
             <ArrowDropUpIcon color="primary" />
-        </IconButton>  
+        </IconButton>  : null}
+        
         <Dialogo open={open} 
         handleClose={handleClose} 
         handleDelete={handleDelete}

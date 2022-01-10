@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Button, Fab, makeStyles, TextField,FormControl, 
     Select,MenuItem, InputLabel } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
@@ -7,10 +7,8 @@ import DialogoCreate from '../components/articles/createArticle/DialogoCreate';
 import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import foto from '../../../resources/images/emptyimage.jpg';
-
-const basePath = "https://fundamentoserver.herokuapp.com";
-//const basePath = "http://localhost:3500";
+import foto from '../../../resources/images/empty.png';
+import basePath from '../../../config/serverConfig';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,6 +31,21 @@ const useStyles = makeStyles((theme) => ({
     },
     dialogContentWidth:{
         width: "700px",
+    },
+    fotoClassDiv:{
+        width: "100%",
+        textAlign: "center",
+    },
+    fotoClass:{
+        height: "300px",
+        width: "80%",
+        objectFit: "cover",
+        cursor: "pointer",
+        boxShadow: "2px 2px 10px #00000088",
+        borderRadius: "10px",
+        "&:hover": {
+            filter: "brightness(0.6)"
+        }
     }
   }));
 
@@ -72,7 +85,7 @@ const CrearArticulo = () =>{
         setArticulo({...articulo, titulo: event.target.value});
     }
     //CATEGORIA
-    const [category, setCategory] = useState(1);
+    const [category, setCategory] = useState("");
     const handleChangeCategory = (event) => {
         const IdCategoria = event.target.value;
         setCategory(IdCategoria);
@@ -81,6 +94,28 @@ const CrearArticulo = () =>{
         }else{
             setArticulo({...articulo, categoria: ""})
         }
+    }
+    const [categorias, setCategorias] = useState([]);
+    useEffect(() => {
+        ObtenerCategorias();
+    }, []);
+    const ObtenerCategorias = async() => {
+        await fetch(basePath + "/ObtenerCategorias", {method: "POST"}).then(async ( res, err) => {
+            setCategorias(await res.json());
+        }).catch(()=>{
+            console.log("not conected");
+        });
+    };
+    const CrearNuevaCategoria = async() => {
+        const nuevaCategoria = prompt("Nombre nueva categoría:")
+        const cuerpo = {categoria: nuevaCategoria}
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(cuerpo)
+        };
+        await fetch(basePath + "/nuevaCategoria", requestOptions);   
+        ObtenerCategorias();     
     }
     //AUTOR
     const [autor, setAutor] = useState("");
@@ -93,17 +128,17 @@ const CrearArticulo = () =>{
 
     const handleUploadImage = e => {
         const files = e.target.files;
-        //console.log(files[0].name)
-        const data = new FormData();
-        data.append('image', files[0]);
-        axios.post(basePath + '/upload' , data)
-            .then(res => {
-                const path = res.data.path;
-                console.log(path);
-                setArticulo({...articulo, imagen: path});
-                setImage(basePath + path);
-            })
-            .catch(err => {console.log(err)});
+        if(files.length > 0){
+            const data = new FormData();
+            data.append('image', files[0]);
+            axios.post(basePath + '/upload' , data)
+                .then(res => {
+                    const path = res.data;
+                    setArticulo({...articulo, imagen: path});
+                    setImage(basePath + path);
+                })
+                .catch(err => {console.log(err)});
+        }
     }
     // DIALOG ----------
     const [addingDialog, setAddingDialog] = useState(false);
@@ -163,11 +198,6 @@ const CrearArticulo = () =>{
             });
         });
     }
-    const categorias = [
-        {value: 1, categoria: "Teología"},
-        {value: 2, categoria: "Historia"},
-        {value: 3, categoria: "Pentecostalismo"}
-    ]
     
     const tipos = [
         {value: "subtitulo", nombre: "Subtitulo"},
@@ -180,46 +210,68 @@ const CrearArticulo = () =>{
         <div><h1>Nuevo Articulo</h1>
         <button type="button" onClick={submitButton}>articulo</button>
         <hr />
-            <form className={classes.root} noValidate autoComplete="off">                
-                <TextField id="standard-basic" label="Titulo" onChange={handleChangeTitle} />
-                <TextField
-                    id="standard-multiline-static"
-                    label="Autor"
-                    value={autor}
-                    onChange={handleChangeAutor}
+            <form className={classes.root} noValidate autoComplete="off">
+                <div className={classes.fotoClassDiv}>
+                    <img 
+                    src={image ? image : foto} 
+                    className={classes.fotoClass}
+                    onClick={()=>{document.getElementById("imagenArticulo").click()}}
                     />
-                <FormControl className={classes.formControl}>
-                <InputLabel id="select-category">Categoría</InputLabel>
-                <Select labelId="select-category"
-                    id="select-category"
-                    value={category}
-                    onChange={handleChangeCategory}
-                    >
-                    <MenuItem value={0}>
-                        <em>None</em>
-                    </MenuItem>
-                    {categorias.map((objeto, index)=>{
-                        return(<MenuItem key={index} value={objeto.value}>{objeto.categoria}</MenuItem>)
-                    })}
-                    
-                </Select>
-                </FormControl>
-                <h4>Subir una imagen</h4>
-                <img src={image ? image : foto} height="60" width="60" />
+                </div>
+                <br/>
+                <div style={{visibility: "hidden"}}>
                 <input type='file'
+                    id="imagenArticulo"
                     name='imagen'
                     placeholder='Subir una imagen...'
                     onChange={handleUploadImage}
-                    /> 
-
-                <br/>
-                <TextField
-                    id="standard-multiline-static"
-                    label="Descripción"
-                    multiline
-                    rows={2}
-                    />
+                    /></div>
+                <hr/>
+                <div className="row">
+                    <div className="col-md">
+                        <TextField id="standard-basic" label="Titulo" onChange={handleChangeTitle} />
+                    </div>
+                    <div className="col-md">
+                        <TextField
+                        id="standard-multiline-static"
+                        label="Autor"
+                        value={autor}
+                        onChange={handleChangeAutor}
+                        />
+                    </div>
+                    <div className="col-md">
+                        <FormControl className={classes.formControl}>
+                            <InputLabel id="select-category">Categoría</InputLabel>
+                            <Select labelId="select-category"
+                            id="select-category"
+                            value={category}
+                            onChange={handleChangeCategory}
+                            >
+                            <MenuItem value={0}>
+                                <em>None</em>
+                            </MenuItem>
+                            {categorias.map((objeto, index)=>{
+                                return(<MenuItem key={index} value={objeto._id}>{objeto.categoria}</MenuItem>)
+                            })}
+                            <MenuItem>
+                                <em onClick={CrearNuevaCategoria}>Nueva categoría</em>
+                            </MenuItem>
+                            </Select>
+                        </FormControl>
+                    </div>
+                </div>                   
+                <div className="row">
+                    <div className="col-md">
+                        <TextField
+                        id="standard-multiline-static"
+                        label="Descripción"
+                        multiline
+                        rows={3}
+                        />
+                    </div>
+                </div>
             </form>
+            <hr />
             {contenido.map((objeto, index) => {
                 return (
                     <Contenido key={index}
@@ -232,9 +284,15 @@ const CrearArticulo = () =>{
                     />
                    )
             })}
-            <Fab color="secondary" aria-label="add" onClick={handleAdding}>
-                <AddIcon />
-            </Fab>
+            <div align="center">
+                <Fab color="secondary" aria-label="add" onClick={handleAdding}>
+                    <AddIcon />
+                </Fab>
+            </div>
+            <hr/>
+            <button className='btn btn-danger'>Cancelar</button>
+            <button className='btn btn-primary'>Guardar</button>
+            
             {/* DIALOGO -> */}
             <DialogoCreate 
             adding={addingDialog}

@@ -9,7 +9,7 @@ function ArticlesList() {
         consumeApiPosts();
     }, []);
     const consumeApiPosts = async() => {
-        await fetch(basePath + "/posts", {method: "POST"}).then(async ( res, err) => {
+        await fetch(basePath + "/posts-all", {method: "POST"}).then(async ( res, err) => {
                 setposts(await res.json());
         }).catch(()=>{
             console.log("not conected");

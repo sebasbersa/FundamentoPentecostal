@@ -1,6 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {TextField, makeStyles, Button} from '@material-ui/core';
 import InputList from './InputList';
+import foto from '../../../../../resources/images/emptyimage.jpg';
+import axios from 'axios';
+import basePath from '../../../../../config/serverConfig';
+
+
 
 const useStyles = makeStyles((theme) => ({
     input:{
@@ -14,6 +19,8 @@ function Input(props){
     const propstype = props.editingObject.type;
     const [lista, setLista] = useState([]);
     const [item, setItem] = useState("");
+    //imagen
+    const [imagen, setImagen] = useState(props.editingObject.contenido && propstype === "img" ? props.editingObject.contenido : foto );
     const handleChange = (event) => {
         setItem(event.target.value);
         if(tipo === "subtitulo" || tipo === "parrafo" ){
@@ -44,6 +51,19 @@ function Input(props){
                 return index !== id;
             })
         })
+    }
+    const handleUploadImage = e => {
+        const files = e.target.files;
+        console.log(files[0].name)
+        const data = new FormData();
+        data.append('image', files[0]);
+        axios.post(basePath + '/upload' , data)
+            .then(res => {
+                const path = res.data;
+                setImagen(basePath + path);
+                props.change(basePath + path);
+            })
+            .catch(err => {console.log(err)});
     }
     useEffect(() => {
         if(!adding){
@@ -80,13 +100,18 @@ function Input(props){
         );
     }
     else if (tipo === "img"){
-        return (<TextField 
-        onChange={handleChange}
-        multiline 
-        rows={4}
-        className={classes.input} 
-        id="text" 
-        label="Ingresar parrafo"/>
+        return (
+        <div>
+            <img 
+            src={imagen}
+            height="80" 
+            width="80" />
+            <input type='file'
+                name='imagen'
+                placeholder='Subir una imagen...'
+                onChange={handleUploadImage}
+                /> 
+        </div>
         )
     }
     else if(tipo === "lista ordenada"){
