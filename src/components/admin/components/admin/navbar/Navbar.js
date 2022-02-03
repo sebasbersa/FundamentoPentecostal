@@ -63,8 +63,8 @@ function Navbar(props){
                 </Hidden>
                 
                 <Typography variant="h6" className={classes.title}>
-                 <Link href="/admin/" className={classes.titleText}>
-                    Fundamento pentecostal
+                 <Link href="/" target="_blank" className={classes.titleText}>
+                    Fundamento Pentecostal
                     </Link>
                 </Typography>
                 

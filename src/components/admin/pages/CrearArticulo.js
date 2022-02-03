@@ -5,10 +5,9 @@ import AddIcon from '@material-ui/icons/Add';
 import Contenido from '../components/articles/createArticle/Contenido';
 import DialogoCreate from '../components/articles/createArticle/DialogoCreate';
 import axios from 'axios';
-import IconButton from '@material-ui/core/IconButton';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import foto from '../../../resources/images/empty.png';
 import basePath from '../../../config/serverConfig';
+import {useParams} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -51,13 +50,23 @@ const useStyles = makeStyles((theme) => ({
 
 
 const CrearArticulo = () =>{
-
     const classes = useStyles();
-    const [contenido, setContenido] = useState([
-        {type: "subtitulo", contenido: "El nuevo testamento"},
-        {type: "parrafo", contenido: "El nuevo testamento parrafo 1"},
-        {type: "lista ordenada", contenido: ["uno", "dos"]}
-        ]);
+    const [tipoArticulo, setTipoArticulo] = useState("Nuevo Articulo");
+    const [articulo, setArticulo] = useState({
+        titulo: "",
+        descripcion: "",
+        destacada: false,
+        contenido: [],
+        autor: "",
+        habilitado: true,
+        categoria: "",
+        imagen: "",
+        imageTitle: "",
+        path: "",
+    });
+    const [contenido, setContenido] = useState([]);
+    const {postId} = useParams();
+    
     const submitButton = (e) => {
         console.log(articulo)
         // e.preventDefault();
@@ -69,28 +78,21 @@ const CrearArticulo = () =>{
         //     .then(res => {console.log(res)})
         //     .catch(err => {console.log(err)})
     }
-    const [articulo, setArticulo] = useState({
-        titulo: "",
-        Descripcion: "",
-        destacada: false,
-        contenido: [],
-        autor: "",
-        habilitado: true,
-        categoria: "",
-        imagen: "",
-        imageTitle: "",
-        path: "",
-        });
+    
     const handleChangeTitle = (event) => {
         setArticulo({...articulo, titulo: event.target.value});
+    }
+    const handleDescripcion = (event)=>{
+        setArticulo({...articulo, descripcion: event.target.value});
     }
     //CATEGORIA
     const [category, setCategory] = useState("");
     const handleChangeCategory = (event) => {
         const IdCategoria = event.target.value;
         setCategory(IdCategoria);
-        if(IdCategoria >= 1){
-            setArticulo({...articulo, categoria: categorias[IdCategoria - 1].categoria})
+        const theCategory = categorias.findIndex((x)=> {return x._id === IdCategoria});
+        if(theCategory > -1){
+            setArticulo({...articulo, categoria: categorias[theCategory].categoria})
         }else{
             setArticulo({...articulo, categoria: ""})
         }
@@ -134,7 +136,7 @@ const CrearArticulo = () =>{
             axios.post(basePath + '/upload' , data)
                 .then(res => {
                     const path = res.data;
-                    setArticulo({...articulo, imagen: path});
+                    setArticulo({...articulo, imagen: basePath + path});
                     setImage(basePath + path);
                 })
                 .catch(err => {console.log(err)});
@@ -198,6 +200,52 @@ const CrearArticulo = () =>{
             });
         });
     }
+   
+    const guardarArticulo = ()=>{
+            const nuevoArticulo = articulo;
+            articulo.contenido = contenido;
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(nuevoArticulo)
+            };
+            if(postId){
+                console.log("Actualizando");
+                console.log(nuevoArticulo);
+                fetch(basePath + "/updatePost", requestOptions);
+                alert("Articulo actualizado con exito!");
+                window.location.href = "/admin/articulos";
+            }else{
+                fetch(basePath + "/createPost", requestOptions);
+                alert("Guardado con exito!");
+                window.location.href = "/admin/articulos";
+            }
+            
+    }
+    const handleGuardar = (e) =>{
+        e.preventDefault();
+        
+        if(articulo.titulo.length < 1){
+            alert("Debe ingresar un titulo");
+        }
+        else if(articulo.autor.length <1){
+            alert("Debe ingresar un autor");
+        }
+        else if(articulo.categoria.length <1){
+            alert("Debe ingresar una categoria");
+        }
+        else if(contenido.length <1){
+            alert("Articulo vacío, ingrese contenido");
+        }
+        else if(articulo.descripcion.length < 1){
+            if(window.confirm("Estas apunto de crear el articulo sin una descripción, ¿seguro deseas continuar?")){
+                guardarArticulo();
+            }
+        }
+        else{
+            guardarArticulo();
+        }
+    }
     
     const tipos = [
         {value: "subtitulo", nombre: "Subtitulo"},
@@ -206,8 +254,32 @@ const CrearArticulo = () =>{
         {value: "lista desordenada", nombre: "Lista con puntos" }, 
         {value: "img", nombre: "Imagen" }
     ]
+    useEffect(() => {
+        if(postId){
+            console.log(postId);
+            const requestOptions = {
+            method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({id: postId})
+            }
+            fetch(basePath + "/postbyid", requestOptions)
+            .then(res => res.json())
+            .then((result) => {
+                console.log(result);
+                setArticulo(result[0]);
+                setContenido(result[0].contenido);
+                setImage(result[0].imagen);
+                setCategory(result[0].categoria)
+                setTipoArticulo("Edición");
+            });
+        }
+        else{
+            console.log("nothing")
+        }
+        
+    }, []);
     return (
-        <div><h1>Nuevo Articulo</h1>
+        <div><h1>{tipoArticulo}</h1>
         <button type="button" onClick={submitButton}>articulo</button>
         <hr />
             <form className={classes.root} noValidate autoComplete="off">
@@ -229,13 +301,17 @@ const CrearArticulo = () =>{
                 <hr/>
                 <div className="row">
                     <div className="col-md">
-                        <TextField id="standard-basic" label="Titulo" onChange={handleChangeTitle} />
+                        <TextField 
+                        id="standard-basic" 
+                        label="Titulo" 
+                        value={articulo.titulo}
+                        onChange={handleChangeTitle} />
                     </div>
                     <div className="col-md">
                         <TextField
                         id="standard-multiline-static"
                         label="Autor"
-                        value={autor}
+                        value={articulo.autor}
                         onChange={handleChangeAutor}
                         />
                     </div>
@@ -267,6 +343,8 @@ const CrearArticulo = () =>{
                         label="Descripción"
                         multiline
                         rows={3}
+                        onChange={handleDescripcion}
+                        value={articulo.descripcion}
                         />
                     </div>
                 </div>
@@ -291,7 +369,7 @@ const CrearArticulo = () =>{
             </div>
             <hr/>
             <button className='btn btn-danger'>Cancelar</button>
-            <button className='btn btn-primary'>Guardar</button>
+            <button className='btn btn-primary' onClick={handleGuardar}>Guardar</button>
             
             {/* DIALOGO -> */}
             <DialogoCreate 

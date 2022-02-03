@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import './articulosidebar.css'
 import basePath from '../../../../config/serverConfig';
+import { capitalize } from '@material-ui/core';
 
 function ArticulosSidebar(){
     const [posts, setposts] = useState([]);
@@ -20,7 +21,7 @@ function ArticulosSidebar(){
             {posts.map((art) => {
                 return(
                     <a href={art.path}>
-                        <p>{art.titulo}</p>
+                        <p>{capitalize(art.titulo)}</p>
                     </a>
                 )
             })}

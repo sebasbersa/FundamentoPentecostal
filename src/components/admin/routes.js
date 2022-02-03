@@ -12,6 +12,8 @@ import HomeIcon from '@material-ui/icons/Home';
 // import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 // import DescriptionIcon from '@material-ui/icons/Description';
 import BookIcon from '@material-ui/icons/Book';
+import Recursos from './pages/Recursos';
+import NuevoRecurso from './components/Recursos/NuevoRecurso';
 
 
 const routes = [
@@ -38,6 +40,28 @@ const routes = [
         exact: true,
         icon: BookIcon,
         nav: true
+    },
+    {
+        name: "Recursos",
+        path: "/admin/recursos",
+        component: Recursos,
+        exact: true,
+        icon: BookIcon,
+        nav: true
+    },
+    {
+        name: "Nuevo Recursos",
+        path: "/admin/nuevo-recurso",
+        component: NuevoRecurso,
+        exact: true,
+        icon: BookIcon,
+        nav: true
+    },
+    {
+        name: "Editar Articulo",
+        path: "/admin/editar/:postId",
+        component: CrearArticulo,
+        nav: false
     },
     {
         path: "*",

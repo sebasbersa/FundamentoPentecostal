@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import ArticlesTable from "./ArticlesTable";
 import basePath from '../../../../config/serverConfig'
-
+import CrearArticulo from "../../pages/CrearArticulo";
 
 function ArticlesList() {
     const [posts, setposts] = useState([]);
@@ -53,7 +53,6 @@ function ArticlesList() {
         };
         await fetch(basePath + "/enableDisablePost", requestOptions);
         consumeApiPosts();
-        
     };
     const destacarPost = async(cuerpo) =>{
         const requestOptions = {
@@ -65,6 +64,9 @@ function ArticlesList() {
         consumeApiPosts();
         
     }
+    // const editarHandler = (event) =>{
+    //     console.log(event.target.id);
+    // }
     const deletePost = async(cuerpo) => {
         const requestOptions = {
             method: 'POST',

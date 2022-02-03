@@ -7,12 +7,12 @@ function Nosotros(){
         <div>
             <div className="us-headline">
                 <div className="us-headline__div" align="center">
-                    <h8>
+                    <h5>
                         Procura con diligencia presentarte a Dios aprobado, como obrero que no tiene de qué avergonzarse, que usa bien la palabra de verdad.
-                    </h8>
-                    <p>
+                    </h5>
+                    <h5>
                         (2 Timoteo 2:15)
-                    </p>
+                    </h5>
                 </div>
             </div>
             <div className="body row">
@@ -24,7 +24,7 @@ function Nosotros(){
                 <div className="col-md">
                     <br/>
                     <div align="center">
-                    <h2>Misión.</h2>
+                    <h2>Misión</h2>
                     </div>
                     <br/>
                     <ol>

@@ -96,6 +96,7 @@ function ArticlesTable(props) {
                     <TableCell scope="col">Articulo</TableCell>
                     <TableCell scope="col">Destacado</TableCell>
                     <TableCell scope="col">Habilitado</TableCell>
+                    <TableCell scope="col">Editar</TableCell>
                     <TableCell scope="col">Eliminar</TableCell>
                 </TableRow>
             </TableHead>
@@ -109,13 +110,13 @@ function ArticlesTable(props) {
                     <TableCell component="th" scope="row">
                         <Button>
                             <ListItemAvatar>
-                                <Avatar src={article.imagen}/>
+                                <Avatar src={article.imagen} onClick={() => window.location.href = "/admin/editar/" + article._id}/>
                             </ListItemAvatar>
                         </Button>
                     </TableCell>
                     <TableCell>
                         <Button>
-                            <ListItemText id={index} primary={article.titulo} />
+                            <ListItemText id={index} primary={article.titulo} onClick={() => window.location.href = "/admin/editar/" + article._id} />
                         </Button>
                     </TableCell>
                     <TableCell>
@@ -138,6 +139,11 @@ function ArticlesTable(props) {
                                 name={article._id}
                                 />
                         </Tooltip>
+                    </TableCell>
+                    <TableCell>
+                        <Button component="button" variant="contained" color="primary" onClick={() => window.location.href = "/admin/editar/" + article._id}>
+                            <span id={article._id} >Editar</span>
+                        </Button>
                     </TableCell>
                     <TableCell>
                         <Button component="button" variant="contained" color="secondary" onClick={props.eliminar} >

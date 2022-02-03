@@ -10,7 +10,7 @@ import routes from '../../routes';
 
 const estilos = makeStyles( (theme) => ({
     links: {
-        color: '#142850'
+        color: '#142850',
     },
     icons: {
         color: '#142850'
@@ -31,7 +31,7 @@ function UserSidebar(props){
                         <ListItemIcon>
                             {<ruta.icon className={classes.icons}/>}
                         </ListItemIcon>
-                        <ListItemText className={classes.links} primary={" " + ruta.name} />
+                        <ListItemText className={classes.links} primary={<h5>{ruta.name}</h5>} />
                         </ListItem>}
                     /> : null
                 ))}

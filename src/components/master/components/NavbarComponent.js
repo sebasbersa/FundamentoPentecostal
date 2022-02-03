@@ -93,7 +93,7 @@ function NavbarComponent(props){
                 </div>
                    
                     <Link href="/" className={classes.titleText}>
-                        Fundamento pentecostal
+                        Fundamento Pentecostal
                     </Link>
                     
                 </Typography>
