@@ -5,7 +5,7 @@ import Menu from '@material-ui/icons/Menu';
 import LinkRouter from './LinkRouter';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from '@material-ui/core/Slide';
-import routes from '../../../routes';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 function Navbar(props){
     const useStyles = makeStyles(theme => ({
@@ -67,14 +67,11 @@ function Navbar(props){
                     Fundamento Pentecostal
                     </Link>
                 </Typography>
-                
-                <Hidden smDown>
-                    {routes.map((ruta, index) => (
-                        ruta.nav ? 
-                        <LinkRouter key={index} to={ruta.path} content={<Button variant="text" color="inherit">{ruta.name}</Button>}/>
-                        : null
-                    ))}
-                </Hidden>
+                <div>
+                    <Button color="inherit">Salir
+                        <IconButton color="inherit" ><ExitToAppIcon/></IconButton>
+                    </Button>
+                </div>
             </Toolbar>
         </AppBar>
         </HideOnScroll>

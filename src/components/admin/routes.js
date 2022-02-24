@@ -3,17 +3,20 @@ import Inicio from './pages/Inicio';
 import Articulos from './pages/Articulos';
 //import Articulo from './pages/Articulo';
 import CrearArticulo from './pages/CrearArticulo';
+import Recursos from './pages/Recursos';
+import NuevoRecurso from './components/Recursos/NuevoRecurso';
 
 // ERROR 404
 import Error404 from './pages/Error404';
 
 // Iconos
 import HomeIcon from '@material-ui/icons/Home';
+import DescriptionIcon from '@material-ui/icons/Description';
 // import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 // import DescriptionIcon from '@material-ui/icons/Description';
 import BookIcon from '@material-ui/icons/Book';
-import Recursos from './pages/Recursos';
-import NuevoRecurso from './components/Recursos/NuevoRecurso';
+import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 
 
 const routes = [
@@ -38,7 +41,7 @@ const routes = [
         path: "/admin/nuevo-articulo",
         component: CrearArticulo,
         exact: true,
-        icon: BookIcon,
+        icon: DescriptionIcon,
         nav: true
     },
     {
@@ -46,7 +49,7 @@ const routes = [
         path: "/admin/recursos",
         component: Recursos,
         exact: true,
-        icon: BookIcon,
+        icon: InsertDriveFileIcon,
         nav: true
     },
     {
@@ -54,7 +57,7 @@ const routes = [
         path: "/admin/nuevo-recurso",
         component: NuevoRecurso,
         exact: true,
-        icon: BookIcon,
+        icon: FileCopyIcon,
         nav: true
     },
     {
