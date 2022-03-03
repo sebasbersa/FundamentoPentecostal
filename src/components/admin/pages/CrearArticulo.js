@@ -69,14 +69,6 @@ const CrearArticulo = () =>{
     
     const submitButton = (e) => {
         console.log(articulo)
-        // e.preventDefault();
-        // const formData = new FormData();
-        // for (let i in  articulo){
-        //     formData.append(`${i}`, `${articulo[i]}`);
-        // }
-        // axios.post('http://localhost:3500/prueba', formData)
-        //     .then(res => {console.log(res)})
-        //     .catch(err => {console.log(err)})
     }
     
     const handleChangeTitle = (event) => {
@@ -210,8 +202,6 @@ const CrearArticulo = () =>{
                 body: JSON.stringify(nuevoArticulo)
             };
             if(postId){
-                console.log("Actualizando");
-                console.log(nuevoArticulo);
                 fetch(basePath + "/updatePost", requestOptions);
                 alert("Articulo actualizado con exito!");
                 window.location.href = "/admin/articulos";

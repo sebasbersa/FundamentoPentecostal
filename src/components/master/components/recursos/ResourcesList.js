@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import { capitalize } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import { getDateFormat } from '../../../../config/utilities';
+import basePath from '../../../../config/serverConfig';
 
 const useStyles = makeStyles( (theme) => ({
   breakpoint:{
@@ -34,9 +35,9 @@ function ResourcesList(props){
             <TableCell className={classes.breakpoint}>{getDateFormat(doc.fecha)}</TableCell>
             <TableCell>{capitalize(doc.titulo)}</TableCell>
             <TableCell className={classes.breakpoint}>{capitalize(doc.descripcion)}</TableCell>
-            <TableCell><Button 
-                    variant="contained" 
-                    color="primary" >Descargar</Button></TableCell>
+            <TableCell>
+                    <a href={doc.url} download>Descargar</a>
+                    </TableCell>
           </TableRow>)
         })}
       </TableBody>
