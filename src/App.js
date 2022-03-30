@@ -9,6 +9,7 @@ import {
     Route
   } from "react-router-dom";
 import Admin from './components/admin/Admin';
+import Login from './components/seguridad/Login';
 
 
 function App(){
@@ -16,6 +17,7 @@ function App(){
         <ThemeProvider theme={theme}>
             <Router>
                 <Switch>
+                    <Route path="/login" exact={false}><Login/></Route>
                     <Route path="/admin" exact={false}><Admin/></Route>
                     <Route path="/" exact={false}><Master/></Route>
                 </Switch>

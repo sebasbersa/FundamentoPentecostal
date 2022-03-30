@@ -36,7 +36,7 @@ function ResourcesList(props){
             <TableCell>{capitalize(doc.titulo)}</TableCell>
             <TableCell className={classes.breakpoint}>{capitalize(doc.descripcion)}</TableCell>
             <TableCell>
-                    <a href={doc.url} download>Descargar</a>
+                    <a href={basePath + doc.url} download>Descargar</a>
                     </TableCell>
           </TableRow>)
         })}

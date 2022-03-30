@@ -18,8 +18,20 @@ const RecursosList = () => {
             console.log("not conected");
         });
     };
-    const handleDelete = () => {
-        console.log("Eliminar");
+    const handleDelete = async (e) => {
+        const id = e;
+        const cuerpo = {
+            id: id,
+        }
+        if(window.confirm("¿Seguro deseas eliminar?, esto no se podrá deshacer")){
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(cuerpo)
+            };
+            await fetch(basePath + "/delete", requestOptions)
+            .then(()=>{consumeApiPosts()})
+        }
     }
     const handleHabilitar = (event) => {
         const id = event.target.name;
@@ -64,8 +76,9 @@ const RecursosList = () => {
                                 name={doc._id}
                             /></TableCell>
                     <TableCell>
-                    <IconButton aria-label="delete" onClick={handleDelete}>
-                    <DeleteIcon color="secondary" /></IconButton>
+                    <IconButton aria-label="delete" onClick={() => {handleDelete(doc._id)}}>
+                        <DeleteIcon color="secondary" />
+                    </IconButton>
                     </TableCell>
                 </TableRow>)
                 })}

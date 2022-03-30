@@ -47,35 +47,44 @@ function NuevoRecurso(){
   const handleDescripcion = (e)=>{
       setRecurso({...recurso, descripcion: e.target.value});
   }
-
-  const handleFileUpload = (e) =>{
-    e.preventDefault();
-    const files = e.target.files;
+  async function subirDocumento(){
+    const files = document.getElementById("fileUploadInput").files;
     if(files.length > 0){
       const data = new FormData();
       data.append('archivo', files[0]);
       axios.post(basePath + '/uploadDocument' , data)
       .then(res => {
-        const path = res.data;
-        setRecurso({...recurso, url: basePath + path});
-        setNombreArchivo(files[0].name);
+          const path = res.data;
+          setRecurso({...recurso, url: basePath + path});
+          const newRecurso = recurso;
+          newRecurso.url = path;
+          const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newRecurso)
+          }
+        fetch(basePath + "/insertRecurso", requestOptions).then(res => {
+          window.location.href = "/admin/recursos";
+        }); 
         }).catch(err => {console.log(err)});
     }
   }
-  const handleGuardar = () => {
+  const handleFileUpload = (e) =>{
+    const files = e.target.files;
+    setNombreArchivo(files[0].name)
+  }
+  const handleGuardar = async () => {
     if(recurso.titulo.length <= 0){alert("Debe ingresar un titulo");}
     else if(recurso.autor.length <= 0){alert("Debe ingresar un autor");}
     else if(recurso.descripcion.length <= 0){alert("Debe ingresar una descripción");}
-    else if(recurso.url.length <= 0){alert("Debe subir un archivo");}
-    else{
-      const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(recurso)
+    else if(document.getElementById("fileUploadInput").files.length <= 0){
+      alert("Debe ingresar un archivo");
     }
-    fetch(basePath + "/insertRecurso", requestOptions).then(res => {
-      window.location.href = "/admin/recursos";
-    });    
+    else{
+      await subirDocumento().then(() => {
+        console.log(recurso);
+      });
+     
     }
   }
   const handleCancelar = () =>{
@@ -103,7 +112,7 @@ function NuevoRecurso(){
         component="label"
         color="primary"
       >Subir Documento<InsertDriveFileIcon/>
-      <input type="file" hidden accept=".docx,.pdf" onChange={handleFileUpload} />
+      <input id="fileUploadInput" type="file" hidden accept=".docx,.pdf" onChange={handleFileUpload}/>
       </Button>
       <Typography 
         className={classes.Archivo}

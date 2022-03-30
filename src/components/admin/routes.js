@@ -5,6 +5,7 @@ import Articulos from './pages/Articulos';
 import CrearArticulo from './pages/CrearArticulo';
 import Recursos from './pages/Recursos';
 import NuevoRecurso from './components/Recursos/NuevoRecurso';
+import Usuarios from './pages/Usuarios';
 
 // ERROR 404
 import Error404 from './pages/Error404';
@@ -17,6 +18,8 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import BookIcon from '@material-ui/icons/Book';
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
+import GroupIcon from '@material-ui/icons/Group';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 
 const routes = [
@@ -66,47 +69,23 @@ const routes = [
         component: CrearArticulo,
         nav: false
     },
+    // {
+    //     name: "Usuarios",
+    //     path: "/admin/usuarios",
+    //     component: Usuarios,
+    //     icon: GroupIcon,
+    //     nav: true
+    // },
+    // {
+    //     name: "Nuevo usuario",
+    //     path: "/admin/crear-usuario",
+    //     component: Usuarios,
+    //     icon: PersonAddIcon,
+    //     nav: true
+    // },
     {
         path: "*",
         component: Error404
     },
 ]
-
-//     {
-//         name: "Fundamento",
-//         path: "/fundamento",
-//         component: Fundamento,
-//         exact: true,
-//         icon: BookIcon,
-//         nav: true
-//     },    
-//     {
-//         name: "Nosotros",
-//         path: "/nosotros",
-//         component: Nosotros,
-//         exact: true,
-//         icon: PeopleAltIcon,
-//         nav: true
-//     },
-//     {
-//         name: "Articulos",
-//         path: "/articulos",
-//         component: Articulos,
-//         exact: true,
-//         icon: DescriptionIcon,
-//         nav: true
-//     },
-//     {
-//         name: "Articulo",
-//         path: "/articulo",
-//         exact: false,
-//         component: Articulo,
-//         icon: null,
-//         nav: false
-//     },
-//     {
-//         path: "*",
-//         component: Error404
-//     },
-// ]
 export default routes;

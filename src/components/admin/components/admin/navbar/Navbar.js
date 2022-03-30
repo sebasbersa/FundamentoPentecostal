@@ -46,7 +46,10 @@ function Navbar(props){
       }
 
     const classes = useStyles();
-
+    const logout = () => {
+        localStorage.removeItem("token");
+        window.location.href = "/login";
+    }
     return (
         <div>
         <HideOnScroll>
@@ -68,7 +71,7 @@ function Navbar(props){
                     </Link>
                 </Typography>
                 <div>
-                    <Button color="inherit">Salir
+                    <Button color="inherit" onClick={logout}>Salir
                         <IconButton color="inherit" ><ExitToAppIcon/></IconButton>
                     </Button>
                 </div>

@@ -9,7 +9,24 @@ import {
   } from "react-router-dom";
   import routes from './routes';
 import './admin.css'
+import jwt from 'jsonwebtoken';
 function Admin(){
+    //Revisar si el usuario esta logueado:
+    useEffect(()=>{
+        const token = localStorage.getItem("token");
+        console.log(token);
+        if(token){
+            const user = jwt.decode(token);
+            if(!user){
+                localStorage.removeItem("token");
+                window.location.href = "/login";
+            }else{
+                console.log(user);
+            }
+        }else{
+            window.location.href = "/login";
+        }
+    }, []);
     const sidebarWidth = 240;
     const [navbarMargin, setnavbarMargin] = useState(240)
     const [variant, setVariant] = useState("permanent")
