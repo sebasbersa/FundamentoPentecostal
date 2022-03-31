@@ -3,7 +3,7 @@ import {Button, TextField} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import basePath from '../../config/serverConfig';
 import ReCAPTCHA from "react-google-recaptcha";
-import google from '../../config/recaptcha';
+import env from 'react-dotenv';
 
 const useStyles = makeStyles((theme) => ({
     bodyBack: {
@@ -126,7 +126,7 @@ const Login = () => {
             <br/>
             {
                 !debug ? <ReCAPTCHA
-                    sitekey={google.claveSitio}
+                    sitekey={env.CLAVE_SITIO}
                     onChange={captchaChange}
                 /> : null
             }
