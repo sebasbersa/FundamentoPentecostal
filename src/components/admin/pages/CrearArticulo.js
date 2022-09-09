@@ -66,10 +66,7 @@ const CrearArticulo = () =>{
     });
     const [contenido, setContenido] = useState([]);
     const {postId} = useParams();
-    
-    const submitButton = (e) => {
-        console.log(articulo)
-    }
+
     
     const handleChangeTitle = (event) => {
         setArticulo({...articulo, titulo: event.target.value});
@@ -270,7 +267,6 @@ const CrearArticulo = () =>{
     }, []);
     return (
         <div><h1>{tipoArticulo}</h1>
-        <button type="button" onClick={submitButton}>articulo</button>
         <hr />
             <form className={classes.root} noValidate autoComplete="off">
                 <div className={classes.fotoClassDiv}>

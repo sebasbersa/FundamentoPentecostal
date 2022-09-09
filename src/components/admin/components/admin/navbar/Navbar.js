@@ -1,8 +1,6 @@
 import React from 'react';
-import './navbar.css'
 import { AppBar, Toolbar, Typography, makeStyles, IconButton, Button, Hidden, Link } from '@material-ui/core';
 import Menu from '@material-ui/icons/Menu';
-import LinkRouter from './LinkRouter';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from '@material-ui/core/Slide';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';

@@ -1,12 +1,47 @@
 import React from 'react'
-import './nosotros.css';
 import Study from '../../../resources/images/estudy.jpg'
+import { makeStyles } from '@material-ui/core';
+import ovejas from '../../../resources/images/ovejas.jpg';
+
+const useStyles = makeStyles((theme) => ({
+    usHeadline: {
+        maxHeight: "60vh",
+        height: "60vh",
+        backgroundImage: "url(" + ovejas + ")",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        position: "relative",
+        backgroundPosition: "center"
+    },
+    usHeadlineDiv: {
+        background: "#142850aa",
+        position: "absolute",
+        bottom: "0",
+        left: "0",
+        width: "100%",
+        borderTop: "3px solid #ffffffaa",
+        padding: "10px 60px",
+        color: "white",
+        textAlign: "center"
+    },
+    usImageDiv: {
+        margin: "20px",
+        padding: "20px",
+        boxShadow: "2px 2px 8px rgba(0,0,0,0.5)",
+        borderRadius: "9px"
+    },
+    usImgImg:{
+        width: "100%"
+    }
+
+}));
 
 function Nosotros(){
+    const classes = useStyles();
     return (
         <div>
-            <div className="us-headline">
-                <div className="us-headline__div" align="center">
+            <div className={classes.usHeadline}>
+                <div className={classes.usHeadlineDiv}>
                     <h5>
                         Procura con diligencia presentarte a Dios aprobado, como obrero que no tiene de qué avergonzarse, que usa bien la palabra de verdad.
                     </h5>
@@ -42,8 +77,8 @@ function Nosotros(){
                     </ol>
                 </div>
                 <div className="col-md">
-                    <div className="us-img__div" align="center">
-                        <img alt="nosotros" src={Study} className="us-img__img" />
+                    <div className={classes.usImageDiv} align="center">
+                        <img alt="nosotros" src={Study} className={classes.usImgImg} />
                     </div>
                 </div>
             </div>

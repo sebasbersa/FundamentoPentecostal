@@ -5,8 +5,6 @@ import foto from '../../../../../resources/images/emptyimage.jpg';
 import axios from 'axios';
 import basePath from '../../../../../config/serverConfig';
 
-
-
 const useStyles = makeStyles((theme) => ({
     input:{
         width: "100%"

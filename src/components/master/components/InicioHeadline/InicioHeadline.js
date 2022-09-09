@@ -3,8 +3,6 @@ import './inicioheadline.css';
 import VideoBackground from "../../../../resources/videos/video_bible.mp4";
 import {Button} from '@material-ui/core';
 
-
-
 function InicioHeadline(){
     return(
         <div className="headline">

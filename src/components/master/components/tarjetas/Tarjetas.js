@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Tarjeta from './Tarjeta'
-import "./tarjetas.css"
 import basePath from '../../../../config/serverConfig';
 
 
@@ -9,18 +8,18 @@ function Tarjetas(props) {
     useEffect(() => {
         consumeApiPosts();
     }, []);
-    const consumeApiPosts = async() => {
-        await fetch(basePath + "/posts", {method: "POST"}).then(async ( res, err) => {
-                setposts(await res.json());
-        }).catch(()=>{
+    const consumeApiPosts = async () => {
+        await fetch(basePath + "/posts", { method: "POST" }).then(async (res, err) => {
+            setposts(await res.json());
+        }).catch(() => {
             console.log("not conected");
         });
     };
-    const cards = posts.slice(0,props.cantidad);
-    const destacadas = cards.filter(function(card){
-        if (props.destacada){
+    const cards = posts.slice(0, props.cantidad);
+    const destacadas = cards.filter(function (card) {
+        if (props.destacada) {
             return card.destacada
-        }else{
+        } else {
             return card
         }
     });
@@ -30,20 +29,17 @@ function Tarjetas(props) {
             {destacadas.map((card, index) => {
                 return (
                     <div key={index} className="col-md-3">
-                        <Tarjeta 
+                        <Tarjeta
                             id={card.id}
-                            imagen={card.imagen} 
+                            imagen={card.imagen}
                             imageTitle={card.imageTitle}
                             titulo={card.titulo}
                             descripcion={card.descripcion}
                             path={card.path}
-                            />
+                        />
                     </div>
-                    )
+                )
             })
-            
-            
-            
             }
         </div>
     )

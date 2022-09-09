@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { makeStyles} from '@material-ui/core';
 import NavbarComponent from './components/NavbarComponent';
 import Cajon from './components/Cajon';
+import Footer from './components/Footer';
 import {
     BrowserRouter as Router,
     Switch,
@@ -63,7 +64,7 @@ function Master(){
                         }
                     </Switch>
                     <footer>
-                        este es el footer
+                        <Footer/>
                     </footer>
                     <div className="pie">Copyright {year.getFullYear()}</div>
             </div>

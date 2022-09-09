@@ -1,5 +1,4 @@
 import React, {useEffect,useState} from 'react'
-import './recursos.css';
 import basePath from '../../../config/serverConfig';
 import ResourcesList from '../components/recursos/ResourcesList';
 

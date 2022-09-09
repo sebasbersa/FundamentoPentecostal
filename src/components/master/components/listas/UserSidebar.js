@@ -3,7 +3,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import './userSidebar.css';
 import LinkRouter from '../LinkRouter';
 import {Divider, makeStyles} from '@material-ui/core';
 import routes from '../../routes';
@@ -27,7 +26,7 @@ function UserSidebar(props){
                 {routes.map((ruta, index) => (
                     ruta.nav === true ? 
                     <LinkRouter key={index} to={ruta.path} content={
-                        <ListItem  onClick={props.clickLink}  button>
+                        <ListItem  onClick={props.clickLink} button>
                         <ListItemIcon>
                             {<ruta.icon className={classes.icons}/>}
                         </ListItemIcon>

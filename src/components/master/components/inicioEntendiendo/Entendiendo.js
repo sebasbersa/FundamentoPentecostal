@@ -7,7 +7,6 @@ function Entendiendo(){
         <div>
             <div className="row div_entendiendo">
                 <div className="col-lg-4" align="center">
-                {/* <img src={logoSvg} alt="" className={classes.logoSvg}/> */}
                     <div id="div_entendiendo_image" align="center">
                         <div className="entendiendoTexts" align="center">
                             <h5>Entendiendo uno dos</h5>

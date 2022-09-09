@@ -12,7 +12,7 @@ function ArticuloComponent(props){
                 <hr/>
                     <h1>{props.titulo}</h1>
                     {props.contenido.map((objeto, index) =>{
-                        return(<Evaluar key={index} contenido={objeto} />)
+                        return(<Evaluar key={index} contenido={objeto} titulo={props.titulo} />)
                     })}
             </div>
             <div className="artcomp_sidebar" >
@@ -24,6 +24,7 @@ function ArticuloComponent(props){
 
 function Evaluar(props){
     const contenido = props.contenido;
+    const titulo = props.titulo;
 
     if(contenido.type === "subtitulo"){
         return <h2>{contenido.contenido}</h2>
@@ -52,7 +53,7 @@ function Evaluar(props){
     else if(contenido.type === "img"){
         return (
             <div align="center">
-                <img alt="imagen" src={contenido.contenido} className="artcomp_content_img" />
+                <img alt={titulo} src={contenido.contenido} className="artcomp_content_img" />
             </div>
             
         )
